@@ -15,7 +15,7 @@
 		774065471B51CF770080F4F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 774065461B51CF770080F4F7 /* Images.xcassets */; };
 		7740654A1B51CF770080F4F7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 774065481B51CF770080F4F7 /* LaunchScreen.xib */; };
 		774065561B51CF780080F4F7 /* Deci_mateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774065551B51CF780080F4F7 /* Deci_mateTests.swift */; };
-		774065711B51D8270080F4F7 /* AudioMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 774065701B51D8270080F4F7 /* AudioMeter.m */; };
+		774065711B51D8270080F4F7 /* AudioMeter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 774065701B51D8270080F4F7 /* AudioMeter.mm */; };
 		774065731B51D8910080F4F7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065721B51D8910080F4F7 /* Accelerate.framework */; };
 		774065751B51D8990080F4F7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065741B51D8990080F4F7 /* OpenGLES.framework */; };
 		774065771B51D8A10080F4F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065761B51D8A10080F4F7 /* UIKit.framework */; };
@@ -25,6 +25,8 @@
 		7740657F1B51D8BB0080F4F7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7740657E1B51D8BB0080F4F7 /* MediaPlayer.framework */; };
 		774065851B51DA1C0080F4F7 /* mo_audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = 774065821B51DA1C0080F4F7 /* mo_audio.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		774065861B51DA1C0080F4F7 /* mo_gfx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 774065841B51DA1C0080F4F7 /* mo_gfx.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		774065881B51DB690080F4F7 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065871B51DB690080F4F7 /* aubio.framework */; };
+		7740658B1B51DBED0080F4F7 /* FFTHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7740658A1B51DBED0080F4F7 /* FFTHelper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +54,7 @@
 		774065551B51CF780080F4F7 /* Deci_mateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deci_mateTests.swift; sourceTree = "<group>"; };
 		774065601B51D7090080F4F7 /* Deci-mate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Deci-mate-Bridging-Header.h"; sourceTree = "<group>"; };
 		7740656F1B51D81E0080F4F7 /* AudioMeter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioMeter.h; sourceTree = "<group>"; };
-		774065701B51D8270080F4F7 /* AudioMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMeter.m; sourceTree = "<group>"; };
+		774065701B51D8270080F4F7 /* AudioMeter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioMeter.mm; sourceTree = "<group>"; };
 		774065721B51D8910080F4F7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		774065741B51D8990080F4F7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		774065761B51D8A10080F4F7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -65,6 +67,9 @@
 		774065821B51DA1C0080F4F7 /* mo_audio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_audio.mm; sourceTree = "<group>"; };
 		774065831B51DA1C0080F4F7 /* mo_gfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mo_gfx.h; sourceTree = "<group>"; };
 		774065841B51DA1C0080F4F7 /* mo_gfx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mo_gfx.mm; sourceTree = "<group>"; };
+		774065871B51DB690080F4F7 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = aubio.framework; sourceTree = "<group>"; };
+		774065891B51DBED0080F4F7 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
+		7740658A1B51DBED0080F4F7 /* FFTHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FFTHelper.mm; sourceTree = "<group>"; };
 		87D3F8273D6C741CB4052C42 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CBB63EED0C7C6911BF49DC6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7740657F1B51D8BB0080F4F7 /* MediaPlayer.framework in Frameworks */,
+				774065881B51DB690080F4F7 /* aubio.framework in Frameworks */,
 				7740657D1B51D8B00080F4F7 /* AudioToolbox.framework in Frameworks */,
 				7740657B1B51D8AB0080F4F7 /* CoreGraphics.framework in Frameworks */,
 				774065791B51D8A60080F4F7 /* Foundation.framework in Frameworks */,
@@ -167,6 +173,8 @@
 		7740655F1B51D6E80080F4F7 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				774065891B51DBED0080F4F7 /* FFTHelper.h */,
+				7740658A1B51DBED0080F4F7 /* FFTHelper.mm */,
 				774065801B51DA1C0080F4F7 /* mo_def.h */,
 				774065811B51DA1C0080F4F7 /* mo_audio.h */,
 				774065821B51DA1C0080F4F7 /* mo_audio.mm */,
@@ -182,7 +190,7 @@
 				774065601B51D7090080F4F7 /* Deci-mate-Bridging-Header.h */,
 				7740653C1B51CF770080F4F7 /* AppDelegate.swift */,
 				7740656F1B51D81E0080F4F7 /* AudioMeter.h */,
-				774065701B51D8270080F4F7 /* AudioMeter.m */,
+				774065701B51D8270080F4F7 /* AudioMeter.mm */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 		ABC677B1E5763A545039F023 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				774065871B51DB690080F4F7 /* aubio.framework */,
 				7740657E1B51D8BB0080F4F7 /* MediaPlayer.framework */,
 				7740657C1B51D8B00080F4F7 /* AudioToolbox.framework */,
 				7740657A1B51D8AB0080F4F7 /* CoreGraphics.framework */,
@@ -363,7 +372,8 @@
 			files = (
 				774065421B51CF770080F4F7 /* ViewController.swift in Sources */,
 				7740653D1B51CF770080F4F7 /* AppDelegate.swift in Sources */,
-				774065711B51D8270080F4F7 /* AudioMeter.m in Sources */,
+				7740658B1B51DBED0080F4F7 /* FFTHelper.mm in Sources */,
+				774065711B51D8270080F4F7 /* AudioMeter.mm in Sources */,
 				774065851B51DA1C0080F4F7 /* mo_audio.mm in Sources */,
 				774065401B51CF770080F4F7 /* Deci_mate.xcdatamodeld in Sources */,
 				774065861B51DA1C0080F4F7 /* mo_gfx.mm in Sources */,
@@ -495,6 +505,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Deci-mate/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -510,6 +524,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Deci-mate/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
