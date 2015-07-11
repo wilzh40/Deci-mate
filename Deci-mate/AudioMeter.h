@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface AudioMeter : NSObject
-
+- (void) initAudioMeter;
 @end
