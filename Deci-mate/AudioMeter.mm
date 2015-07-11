@@ -209,10 +209,12 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
     //[super didReceiveMemoryWarning];
 }
 
-
+/*
 -(void) dealloc {
     destroyAccumulator();
     FFTHelperRelease(fftConverter);
+    //[super dealloc];
 }
+ */
 
 @end
