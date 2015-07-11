@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		672556F0D37FF4B52C4D6384 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CE6032C2CA231D5D9C9D86 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7740653D1B51CF770080F4F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740653C1B51CF770080F4F7 /* AppDelegate.swift */; };
 		774065401B51CF770080F4F7 /* Deci_mate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7740653E1B51CF770080F4F7 /* Deci_mate.xcdatamodeld */; };
 		774065421B51CF770080F4F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774065411B51CF770080F4F7 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02CE6032C2CA231D5D9C9D86 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		774065371B51CF770080F4F7 /* Deci-mate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deci-mate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7740653B1B51CF770080F4F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7740653C1B51CF770080F4F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +40,8 @@
 		7740654F1B51CF780080F4F7 /* Deci-mateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Deci-mateTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		774065541B51CF780080F4F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		774065551B51CF780080F4F7 /* Deci_mateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deci_mateTests.swift; sourceTree = "<group>"; };
+		87D3F8273D6C741CB4052C42 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CBB63EED0C7C6911BF49DC6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				672556F0D37FF4B52C4D6384 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +63,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		599F4367F7AE52890F546917 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				87D3F8273D6C741CB4052C42 /* Pods.debug.xcconfig */,
+				CBB63EED0C7C6911BF49DC6D /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7740652E1B51CF770080F4F7 = {
 			isa = PBXGroup;
 			children = (
 				774065391B51CF770080F4F7 /* Deci-mate */,
 				774065521B51CF780080F4F7 /* Deci-mateTests */,
 				774065381B51CF770080F4F7 /* Products */,
+				599F4367F7AE52890F546917 /* Pods */,
+				ABC677B1E5763A545039F023 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +131,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ABC677B1E5763A545039F023 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02CE6032C2CA231D5D9C9D86 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,9 +146,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 774065591B51CF780080F4F7 /* Build configuration list for PBXNativeTarget "Deci-mate" */;
 			buildPhases = (
+				DB68F6AF681EE099DFC9C17D /* Check Pods Manifest.lock */,
 				774065331B51CF770080F4F7 /* Sources */,
 				774065341B51CF770080F4F7 /* Frameworks */,
 				774065351B51CF770080F4F7 /* Resources */,
+				FA0578CF6070010340E0FD72 /* Embed Pods Frameworks */,
+				34A600A16A4FE31C7E0B7E7B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,6 +236,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34A600A16A4FE31C7E0B7E7B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB68F6AF681EE099DFC9C17D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA0578CF6070010340E0FD72 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		774065331B51CF770080F4F7 /* Sources */ = {
@@ -342,6 +417,7 @@
 		};
 		7740655A1B51CF780080F4F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87D3F8273D6C741CB4052C42 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Deci-mate/Info.plist";
@@ -352,6 +428,7 @@
 		};
 		7740655B1B51CF780080F4F7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBB63EED0C7C6911BF49DC6D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Deci-mate/Info.plist";
@@ -413,6 +490,7 @@
 				7740655B1B51CF780080F4F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7740655C1B51CF780080F4F7 /* Build configuration list for PBXNativeTarget "Deci-mateTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +499,7 @@
 				7740655E1B51CF780080F4F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
