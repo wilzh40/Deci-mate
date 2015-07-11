@@ -23,6 +23,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         // Dispose of any resources that can be recreated.
     }
     
+    func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 5
+    }
     
+    func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
+        return 5
+    }
 }
 
