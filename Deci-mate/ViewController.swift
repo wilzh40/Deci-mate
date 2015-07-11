@@ -15,7 +15,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AudioMeter().initAudioMeter()
+        let meter: AudioMeter = AudioMeter()
+        meter.initAudioMeter()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

@@ -15,7 +15,7 @@
 		774065471B51CF770080F4F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 774065461B51CF770080F4F7 /* Images.xcassets */; };
 		7740654A1B51CF770080F4F7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 774065481B51CF770080F4F7 /* LaunchScreen.xib */; };
 		774065561B51CF780080F4F7 /* Deci_mateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774065551B51CF780080F4F7 /* Deci_mateTests.swift */; };
-		774065711B51D8270080F4F7 /* AudioMeter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 774065701B51D8270080F4F7 /* AudioMeter.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		774065711B51D8270080F4F7 /* AudioMeter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 774065701B51D8270080F4F7 /* AudioMeter.mm */; };
 		774065731B51D8910080F4F7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065721B51D8910080F4F7 /* Accelerate.framework */; };
 		774065751B51D8990080F4F7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065741B51D8990080F4F7 /* OpenGLES.framework */; };
 		774065771B51D8A10080F4F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065761B51D8A10080F4F7 /* UIKit.framework */; };
