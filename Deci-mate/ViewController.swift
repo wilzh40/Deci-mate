@@ -8,6 +8,7 @@
 
 import UIKit
 import BEMSimpleLineGraph
+import KDCircularProgress
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
@@ -23,6 +24,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var deltaTime: Double = 0.1 //rate percentage is updated
     var resetThreshold: Float = 75
     
+    var progress:KDCircularProgress!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +64,19 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
 
 
-
+        //setup progress view
+        progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 225, height: 225))
+        progress.startAngle = 0
+        progress.progressThickness = 0.2
+        progress.trackThickness = 0.7
+        progress.clockwise = true
+        progress.center = CGPointMake(view.center.x, view.frame.height - 112)
+        progress.gradientRotateSpeed = 2
+        progress.roundedCorners = true
+        progress.glowMode = .Forward
+        progress.angle = 0
+        progress.setColors(UIColor.whiteColor() ,UIColor.orangeColor(), UIColor.redColor())
+        view.addSubview(progress)
         
 
         
@@ -142,7 +156,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         if graphArray.count > 20 {
             let db = graph.calculatePointValueAverage().floatValue
             hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
-            
+            progress.angle = Int(hearingPercent*360)
             if db < resetThreshold {
                 // Reset it once it reaches a certain threshold
                 hearingPercent = 1
