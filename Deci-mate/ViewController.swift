@@ -9,9 +9,11 @@
 import UIKit
 import BEMSimpleLineGraph
 import KDCircularProgress
+import AudioToolbox
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
+    @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var labelTimeLeft: UILabel!
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
@@ -20,7 +22,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
 
     var timeRange: NSTimeInterval = 3*60 ///in secs
 
-    var hearingPercent: Float = 1.0
+    var hearingPercent: Float = 1
     var deltaTime: Double = 0.1 //rate percentage is updated
     var resetThreshold: Float = 75
     
@@ -39,7 +41,6 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         labelAverage.font = UIFont(name: "Futura", size: 12)
         labelTimeLeft.font = UIFont(name: "Futura", size: 12)
-        self.view.bringSubviewToFront(labelAverage)
         
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
@@ -64,6 +65,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
 
 
+
         //setup progress view
         progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 225, height: 225))
         progress.startAngle = 0
@@ -79,7 +81,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         view.addSubview(progress)
         
 
-        
+
+        self.view.bringSubviewToFront(labelAverage)
+        self.view.bringSubviewToFront(alertButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -161,6 +165,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
                 // Reset it once it reaches a certain threshold
                 hearingPercent = 1
             }
+            if hearingPercent <= 0.0 {
+                self.limitReached()
+            }
             
         }
 
@@ -175,6 +182,16 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         return 1/maxExposureTimeFordB(db)
     }
     
-
+    func limitReached() {
+        //vibrate phone
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        alertButton.hidden = false
+        hearingPercent = 1
+    }
+    
+    @IBAction func alertButtonPressed(sender: AnyObject) {
+        alertButton.hidden = true
+    }
+    
 }
 
