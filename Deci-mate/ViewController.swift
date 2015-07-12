@@ -201,6 +201,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         return 1/maxExposureTimeFordB(db)
     }
     
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+        //let (h, m, s) = secondsToHoursMinutesSeconds (seconds)
+        //println ("\(h) Hours, \(m) Minutes, \(s) Seconds")
+    }
+    
     func limitReached() {
         //vibrate phone
         var timer =  NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("vibrate"), userInfo: nil, repeats: true)
