@@ -13,6 +13,7 @@ import AudioToolbox
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
     
+    @IBOutlet weak var labelPercent: UILabel!
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var labelTimeLeft: UILabel!
     @IBOutlet weak var labelAverage: UILabel!
@@ -42,7 +43,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graphArray.addObject(value)
         
         labelAverage.font = UIFont(name: "Futura", size: 12)
-        labelTimeLeft.font = UIFont(name: "Futura", size: 20)
+        labelPercent.font = UIFont(name: "Futura", size: 20)
+        labelTimeLeft.font = UIFont(name: "Futura", size: 12)
         
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
@@ -153,7 +155,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         }
         
         
-        if let b = labelTimeLeft {
+        if let b = labelPercent {
             let percent = CGFloat(hearingPercent*100)
             //let percent = ((CGFloat(hearingPercent*100)).description as NSString).substringToIndex(5)
             b.text = (String(format: "%.5f", percent)) + "%"
