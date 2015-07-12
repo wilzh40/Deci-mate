@@ -26,7 +26,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var hearingPercent: Float = 1
     var deltaTime: Double = 0.1 //rate percentage is updated
     var resetThreshold: Float = 75
-
+    var vibrateTimer: NSTimer?
     var progress:KDCircularProgress!
     
     override func viewDidLoad() {
@@ -94,7 +94,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     }
     
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        let num = 20
+        let num = 45
         if (graphArray.count < num) {
             return graphArray.count
         } else {
@@ -189,7 +189,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     func maxExposureTimeFordB(db: Float32) -> Float32 {
         // In Seconds
-        return pow(2, ((94-db)/3)) * 60
+        return pow(2, ((94-db)/3)) * 60 * 60
     }
     func percentageLossPerSecond(db: Float32) -> Float32 {
         // Converting to seconds
