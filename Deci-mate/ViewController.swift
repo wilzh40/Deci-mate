@@ -15,6 +15,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     var graphArray: NSMutableArray = []
     var startTime: NSDate?
+    var timeRange: NSTimeInterval = 3
     
     
     override func viewDidLoad() {
@@ -22,11 +23,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         startTime = NSDate()
         
-        // setup meter
-        let meter: AudioMeter = AudioMeter()
-        meter.initAudioMeter()
-        meter.delegate = self
-        meter.changeAccumulatorTo(131072/16)  //16384; //32768; 65536; 131072;
+ 
         
         let value = AudioValue()
         value.decibels = 80.0
@@ -50,7 +47,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.labelFont = UIFont(name: "Futura", size: 10)
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
-        
+        // setup meter
+        let meter: AudioMeter = AudioMeter()
+        meter.initAudioMeter()
+        meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
+        meter.delegate = self
+
         
 
         
@@ -111,6 +113,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             l.text = "Average: \(Int(x)) dB"
 
         }
+        // Delete everything older than a certain value
+        for i in graphArray {
+            let v: AudioValue = i as! AudioValue
+            if v.time.timeIntervalSinceNow < -timeRange {
+                graphArray.removeObject(i)
+            }
+        }
+        
     }
 
 }
