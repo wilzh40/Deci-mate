@@ -30,40 +30,38 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
-                                <rect key="frame" x="129" y="369" width="63" height="21"/>
+                                <rect key="frame" x="129" y="200" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au3-dy-ZI5">
-                                <rect key="frame" x="130" y="390" width="60" height="21"/>
+                                <rect key="frame" x="130" y="221" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-fq-qrR">
-                                <rect key="frame" x="124" y="411" width="72" height="21"/>
+                                <rect key="frame" x="124" y="242" width="72" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nVZ-vA-pJn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="1" green="0.2007761102" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="30"/>
+                                <state key="normal">
+                                    <string key="title">WARNING! LIMIT HAS BEEN REACHED. FURTHER SOUNDS AT CURRENT DECIBEL LEVELS WILL CAUSE PERMANENT HEARING DAMAGE. PLEASE TAKE A BREAK OR MOVE TO A QUIETER AREA.</string>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="alertButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3pb-SE-D4I"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7a-nO-Rep" customClass="BEMSimpleLineGraphView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nVZ-vA-pJn">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
-                                        <color key="backgroundColor" red="1" green="0.2007761102" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="30"/>
-                                        <state key="normal">
-                                            <string key="title">WARNING! LIMIT HAS BEEN REACHED. FURTHER SOUNDS AT CURRENT DECIBEL LEVELS WILL CAUSE PERMANENT HEARING DAMAGE. PLEASE TAKE A BREAK OR MOVE TO A QUIETER AREA.</string>
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="alertButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3pb-SE-D4I"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -97,19 +95,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="6HF-E2-jhu"/>
-                            <constraint firstItem="vsx-fq-qrR" firstAttribute="top" secondItem="au3-dy-ZI5" secondAttribute="bottom" id="Dq6-0X-F9i"/>
+                            <constraint firstAttribute="bottom" secondItem="nVZ-vA-pJn" secondAttribute="bottom" id="6jY-n0-nMW"/>
+                            <constraint firstAttribute="trailing" secondItem="g7a-nO-Rep" secondAttribute="trailing" id="E4q-rT-XFf"/>
                             <constraint firstItem="JXv-GH-RIp" firstAttribute="leading" secondItem="8gh-t3-6GM" secondAttribute="trailing" id="EUJ-RM-o52"/>
-                            <constraint firstItem="au3-dy-ZI5" firstAttribute="top" secondItem="RAM-Hk-Qil" secondAttribute="bottom" id="IFj-kn-2Df"/>
+                            <constraint firstItem="nVZ-vA-pJn" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="JBA-ha-yMj"/>
+                            <constraint firstItem="vsx-fq-qrR" firstAttribute="top" secondItem="au3-dy-ZI5" secondAttribute="bottom" id="JIB-5m-Wp9"/>
                             <constraint firstAttribute="centerX" secondItem="RAM-Hk-Qil" secondAttribute="centerX" id="Txj-2X-814"/>
                             <constraint firstItem="JXv-GH-RIp" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UPX-yb-3LH"/>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="UmO-T1-2dZ"/>
+                            <constraint firstItem="au3-dy-ZI5" firstAttribute="top" secondItem="RAM-Hk-Qil" secondAttribute="bottom" id="VH6-sZ-wMZ"/>
                             <constraint firstAttribute="trailing" secondItem="JXv-GH-RIp" secondAttribute="trailing" constant="8" id="Xvp-Ke-JPs"/>
                             <constraint firstAttribute="centerX" secondItem="au3-dy-ZI5" secondAttribute="centerX" id="cgu-bL-Ywh"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vsx-fq-qrR" secondAttribute="bottom" constant="137" id="dxy-cO-RMi"/>
-                            <constraint firstItem="g7a-nO-Rep" firstAttribute="centerX" secondItem="RAM-Hk-Qil" secondAttribute="centerX" id="hmv-RN-xRB"/>
+                            <constraint firstItem="nVZ-vA-pJn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="gHB-eu-lth"/>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hvu-Cf-Url"/>
                             <constraint firstAttribute="centerX" secondItem="vsx-fq-qrR" secondAttribute="centerX" id="jaY-eO-sMy"/>
                             <constraint firstItem="8gh-t3-6GM" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="kRi-U3-S4Z"/>
+                            <constraint firstAttribute="trailing" secondItem="nVZ-vA-pJn" secondAttribute="trailing" id="mMJ-7F-Eg1"/>
+                            <constraint firstItem="RAM-Hk-Qil" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="136" id="vpz-aL-nZE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eaV-Mz-X2H"/>

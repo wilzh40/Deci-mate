@@ -49,7 +49,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         startTime = NSDate()
         
-        limitReached()
+        //limitReached()
         //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         let value = AudioValue()
@@ -64,14 +64,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
         graph.enableReferenceAxisFrame = true
-        graph.enableReferenceXAxisLines = true
-        graph.enableReferenceYAxisLines = false
+        graph.enableReferenceXAxisLines = false
+        graph.enableReferenceYAxisLines = true
         graph.averageLine.enableAverageLine = true
         graph.averageLine.color = UIColor.whiteColor()
         graph.autoScaleYAxis = true
         graph.enableRightReferenceAxisFrameLine = true
         graph.enableTopReferenceAxisFrameLine = true
-        graph.enableXAxisLabel = true
+        graph.enableXAxisLabel = false
         graph.enableYAxisLabel = true
         graph.labelFont = UIFont(name: "Futura", size: 10)
         
@@ -92,7 +92,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         progress.trackThickness = 0.3
         progress.trackColor = UIColor.orangeColor()
         progress.clockwise = true
-        progress.center = CGPointMake(view.center.x, view.frame.height - 170)
+        progress.center = CGPointMake(view.center.x, 225)
         progress.gradientRotateSpeed = 2
         progress.roundedCorners = true
         progress.glowMode = .Forward
@@ -104,6 +104,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         self.view.bringSubviewToFront(labelWeather)
         self.view.bringSubviewToFront(weatherIcon)
         self.view.bringSubviewToFront(labelAverage)
+        self.view.bringSubviewToFront(labelPercent)
+        self.view.bringSubviewToFront(labelTimeLeft)
         self.view.bringSubviewToFront(alertButton)
         loadWeather()
     }
@@ -163,6 +165,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         // Update graph labels
         let x = CGFloat(graph.calculatePointValueAverage().floatValue)
         graph.averageLine.yValue = x
+       
         if let a = labelAverage {
             a.text = "Average: \(Int(x)) dB"
             
@@ -209,10 +212,16 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
 
             
             if db < resetThreshold {
+               
+                
+                graph.averageLine.color = UIColor.whiteColor()
+                
                 // Reset it once it reaches a certain threshold
                 //hearingPercent = 1
 //                view.backgroundColorColor = 
+                
             } else {
+                graph.averageLine.color = UIColor.redColor()
                 hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
             }
             if hearingPercent <= 0.0 {
