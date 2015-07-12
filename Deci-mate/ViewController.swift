@@ -189,7 +189,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     func maxExposureTimeFordB(db: Float32) -> Float32 {
         // In Seconds
-        return pow(2, ((94-db)/3)) * 60 * 60
+        // NIOSH
+        //return pow(2, ((94-db)/3)) * 60 * 60
+        
+        // OSHA 
+        return pow(2, ((105-db)/5)) * 60 * 60
+        
     }
     func percentageLossPerSecond(db: Float32) -> Float32 {
         // Converting to seconds
