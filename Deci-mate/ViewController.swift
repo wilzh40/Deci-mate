@@ -14,6 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
+        meter.changeAccumulatorTo(131072/8)  //16384; //32768; 65536; 131072;
+        
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 

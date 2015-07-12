@@ -12,7 +12,8 @@
 #import <aubio/aubio.h>
 #include <iostream>
 
-#define SAMPLE_RATE 44100  //22050 //44100
+#define SAMPLE_RATE 44100  //22050 //44100 //
+//Valued sampled per second
 #define FRAMESIZE  512
 #define NUMCHANNELS 2
 
@@ -38,11 +39,11 @@ FFTHelperRef *fftConverter = NULL;
 
 //Accumulator Buffer=====================
 
-const UInt32 accumulatorDataLenght = 131072;  //16384; //32768; 65536; 131072;
+UInt32 accumulatorDataLenght = 131072;  //16384; //32768; 65536; 131072;
 UInt32 accumulatorFillIndex = 0;
 Float32 *dataAccumulator = nil;
-static void initializeAccumulator() {
-    dataAccumulator = (Float32*) malloc(sizeof(Float32)*accumulatorDataLenght);
+static void initializeAccumulator(int length) {
+    dataAccumulator = (Float32*) malloc(sizeof(Float32)*length);
     accumulatorFillIndex = 0;
 }
 static void destroyAccumulator() {
@@ -65,9 +66,9 @@ static BOOL accumulateFrames(Float32 *frames, UInt32 lenght) { //returned YES if
     return NO;
 }
 
-static void emptyAccumulator() {
+static void emptyAccumulator(int length) {
     accumulatorFillIndex = 0;
-    memset(dataAccumulator, 0, sizeof(Float32)*accumulatorDataLenght);
+    memset(dataAccumulator, 0, sizeof(Float32)*length);
 }
 //=======================================
 
@@ -108,6 +109,9 @@ __weak UILabel *labelToUpdate = nil;
 
 
 
+
+
+@implementation AudioMeter
 #pragma mark MAIN CALLBACK
 void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
 {
@@ -180,19 +184,16 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
             labelToUpdate.text = [NSString stringWithFormat:@"%f",decibels + 150];
         });
         
-        emptyAccumulator(); //empty the accumulator when finished
+        emptyAccumulator(accumulatorDataLenght); //empty the accumulator when finished
     }
     memset(buffer, 0, sizeof(Float32)*frameSize*NUMCHANNELS);
 }
 
 
-
-@implementation AudioMeter
-
 -(void) initAudioMeter {
     
     fftConverter = FFTHelperCreate(accumulatorDataLenght);
-    initializeAccumulator();
+    initializeAccumulator(accumulatorDataLenght);
    
     bool result = false;
     result = MoAudio::init( SAMPLE_RATE, FRAMESIZE, NUMCHANNELS, false);
@@ -201,7 +202,17 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
     if (!result) { NSLog(@" MoAudio start ERROR"); }
 }
 
+-(void) changeAccumulatorTo:(UInt32)length{
+    bool result = false;
+    MoAudio::stop();
+    destroyAccumulator();
+    accumulatorDataLenght = length;
+    initializeAccumulator(accumulatorDataLenght);
+    result = MoAudio::start( AudioCallback, NULL );
+    if (!result) { NSLog(@" MoAudio start ERROR"); }
 
+    
+}
 
 
 - (void)didReceiveMemoryWarning
