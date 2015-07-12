@@ -19,6 +19,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
+
         
         for index in 1...self.numberOfPointsInLineGraph(graph) {
             graphArray.addObject(CGFloat(random()))
@@ -31,6 +32,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableReferenceYAxisLines = true
         
         var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
+
+        meter.changeAccumulatorTo(131072/8)  //16384; //32768; 65536; 131072;
+        
+
+        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {

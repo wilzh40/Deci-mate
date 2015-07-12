@@ -10,4 +10,8 @@
 
 @interface AudioMeter : NSObject
 - (void) initAudioMeter;
+- (void) changeAccumulatorTo:(UInt32)length;
+@property UInt32 accumulatorLength;
+
+
 @end
