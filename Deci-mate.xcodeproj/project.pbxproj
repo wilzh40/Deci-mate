@@ -28,6 +28,7 @@
 		774065881B51DB690080F4F7 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065871B51DB690080F4F7 /* aubio.framework */; };
 		7740658B1B51DBED0080F4F7 /* FFTHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7740658A1B51DBED0080F4F7 /* FFTHelper.mm */; };
 		7740658D1B51FB990080F4F7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740658C1B51FB990080F4F7 /* Model.swift */; };
+		B8C87AAF1B52CB88008478A3 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C87AAE1B52CB88008478A3 /* Alamofire-SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		7740658A1B51DBED0080F4F7 /* FFTHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FFTHelper.mm; sourceTree = "<group>"; };
 		7740658C1B51FB990080F4F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		87D3F8273D6C741CB4052C42 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B8C87AAE1B52CB88008478A3 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
 		CBB63EED0C7C6911BF49DC6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +177,7 @@
 		7740655F1B51D6E80080F4F7 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				B8C87AAE1B52CB88008478A3 /* Alamofire-SwiftyJSON.swift */,
 				774065891B51DBED0080F4F7 /* FFTHelper.h */,
 				7740658A1B51DBED0080F4F7 /* FFTHelper.mm */,
 				774065801B51DA1C0080F4F7 /* mo_def.h */,
@@ -374,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				774065421B51CF770080F4F7 /* ViewController.swift in Sources */,
+				B8C87AAF1B52CB88008478A3 /* Alamofire-SwiftyJSON.swift in Sources */,
 				7740653D1B51CF770080F4F7 /* AppDelegate.swift in Sources */,
 				7740658B1B51DBED0080F4F7 /* FFTHelper.mm in Sources */,
 				774065711B51D8270080F4F7 /* AudioMeter.mm in Sources */,
