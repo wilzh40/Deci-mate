@@ -18,7 +18,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     var graphArray: NSMutableArray = []
     var startTime: NSDate?
+
     var timeRange: NSTimeInterval = 3*60 ///in secs
+
+    var hearingPercent: Float = 1
+    var deltaTime: Double = 0.1 //rate percentage is updated
+    var resetThreshold: Float = 75
     
     
     override func viewDidLoad() {
@@ -34,7 +39,6 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         labelAverage.font = UIFont(name: "Futura", size: 12)
         labelTimeLeft.font = UIFont(name: "Futura", size: 12)
-        self.view.bringSubviewToFront(labelAverage)
         
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
@@ -56,10 +60,10 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         meter.initAudioMeter()
         meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
         meter.delegate = self
+        var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
 
-        
-
-        
+        self.view.bringSubviewToFront(labelAverage)
+        self.view.bringSubviewToFront(alertButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,19 +129,44 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             }
         }
         if let b = labelTimeLeft {
-            b.text = CGFloat(maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)).description
+            b.text = CGFloat(hearingPercent).description
+
+//CGFloat(maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)).description
         }
         
     }
     
+    func updatePercentage() {
+        if graphArray.count > 20 {
+            let db = graph.calculatePointValueAverage().floatValue
+            hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
+            
+            if db < resetThreshold {
+                // Reset it once it reaches a certain threshold
+                hearingPercent = 1
+            }
+            if hearingPercent <= 0.0 {
+                self.limitReached()
+            }
+            
+        }
+
+    }
+
     func maxExposureTimeFordB(db: Float32) -> Float32 {
-        return pow(2, ((94-db)/3))
+        // In Seconds
+        return pow(2, ((94-db)/3)) * 60
+    }
+    func percentageLossPerSecond(db: Float32) -> Float32 {
+        // Converting to seconds
+        return 1/maxExposureTimeFordB(db)
     }
     
     func limitReached() {
         //vibrate phone
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         alertButton.hidden = false
+        hearingPercent = 1
     }
     
     @IBAction func alertButtonPressed(sender: AnyObject) {
