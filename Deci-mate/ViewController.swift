@@ -35,7 +35,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.averageLine.color = UIColor.redColor()
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
-        meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
+        meter.changeAccumulatorTo(131072/4)  //16384; //32768; 65536; 131072;
         
     }
 
@@ -63,7 +63,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     }
 
     func newDataValue(value: Float32) {
-        graphArray.addObject(CGFloat(value))
+        if value == nil {
+            graphArray.addObject(70.0)
+        } else {
+            graphArray.addObject(CGFloat(value))
+        }
         graph.reloadGraph()
         graph.averageLine.yValue = CGFloat(graph.calculatePointValueAverage().floatValue)
     }
