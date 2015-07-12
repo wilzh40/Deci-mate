@@ -11,6 +11,7 @@ import BEMSimpleLineGraph
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
+    @IBOutlet weak var labelTimeLeft: UILabel!
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     var graphArray: NSMutableArray = []
@@ -30,6 +31,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graphArray.addObject(value)
         
         labelAverage.font = UIFont(name: "Futura", size: 12)
+        labelTimeLeft.font = UIFont(name: "Futura", size: 12)
         self.view.bringSubviewToFront(labelAverage)
         
         //setup graph
