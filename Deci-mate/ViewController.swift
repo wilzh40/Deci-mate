@@ -28,7 +28,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var timeRange: NSTimeInterval = 3*60 ///in secs
     
     let topPadding: CGFloat = 200
-    let bottomPadding: CGFloat = 10
+    let bottomPadding: CGFloat = 40
     
     
     var hearingPercent: Float = 1
@@ -128,8 +128,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
         let i = graphArray.count + index - self.numberOfPointsInLineGraph(graph)
         let value: AudioValue = graphArray[i] as! AudioValue
-        if value.decibels > 120 {
-            return 120.0
+        if value.decibels > 140 {
+            return 140.0
         } else {
             return CGFloat(value.decibels)
         }
@@ -184,9 +184,15 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         if let c = labelTimeLeft {
             if !safe {
-                let seconds = maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue * hearingPercent) //TIME LEFT FACTORS IN PERCENTAGE
+                var avg:Float32 = 0.0;
+                for x in graphArray {
+                    let value = x as! AudioValue
+                    avg += value.decibels/Float(graphArray.count)
+                }
+                
+                let seconds = maxExposureTimeFordB(avg * hearingPercent) //TIME LEFT FACTORS IN PERCENTAGE
                 let (h, m, s) = secondsToHoursMinutesSeconds(Int(seconds))
-                c.text =  ("\(h) Hours, \(m) Min, \(s) Sec \n until hearing damage")
+                c.text =  ("\(h) Hrs, \(m) Min, \(s) Sec \n until hearing damage")
                 
                 
             } else {
