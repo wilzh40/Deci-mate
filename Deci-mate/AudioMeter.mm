@@ -157,11 +157,10 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
             sum += amplitude/frameSize;
         }
         sum /= frameSize;
-        double decibels = 20.0 * log10(sum);
         
         //pow( 10,(sum / 20) );
         
-        std::cout << decibels+150 << std::endl;
+        //std::cout << decibels+150 << std::endl;
         
         // execute inverse fourier transform
         //aubio_fft_rdo(fft,fftgrain,out);
@@ -182,7 +181,7 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
         dispatch_async(dispatch_get_main_queue(), ^{ //update UI only on main thread
           //  labelToUpdate.text = [NSString stringWithFormat:@"%f",decibels + 150];
             //[thisClass changeAccumulatorTo:12312312]
-            [thisClass pushToDelegate: decibels+150];
+            [thisClass pushToDelegate: sum];
 
         });
         

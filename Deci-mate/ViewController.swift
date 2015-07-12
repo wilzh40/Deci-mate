@@ -20,11 +20,10 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
         meter.delegate = self
-
         
-        for index in 1...self.numberOfPointsInLineGraph(graph) {
-            graphArray.addObject(70.0)
-        }
+        let value = AudioValue()
+        value.decibels = 60.0
+        graphArray.addObject(value)
         
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
@@ -33,9 +32,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableReferenceYAxisLines = true
         graph.averageLine.enableAverageLine = true
         graph.averageLine.color = UIColor.redColor()
+        graph.autoScaleYAxis = true
+        graph.enableRightReferenceAxisFrameLine = true
+        graph.enableTopReferenceAxisFrameLine = true
+        graph.enableXAxisLabel = true
+        graph.enableYAxisLabel = true
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
-        meter.changeAccumulatorTo(131072/4)  //16384; //32768; 65536; 131072;
+        meter.changeAccumulatorTo(131072/20)  //16384; //32768; 65536; 131072;
         
     }
 
@@ -45,25 +49,48 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     }
     
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return 100
+        let num = 20
+        if (graphArray.count < num) {
+            return graphArray.count
+        } else {
+            return num
+        }
     }
     
     //y values
     func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
         let i = graphArray.count + index - self.numberOfPointsInLineGraph(graph)
-        return graphArray.objectAtIndex(i) as! CGFloat
+        let value: AudioValue = graphArray[i] as! AudioValue
+        if value.decibels > 120 {
+            return 120.0
+        } else {
+        return CGFloat(value.decibels)
+        }
     }
     
     //x axis labels
     func lineGraph(graph: BEMSimpleLineGraphView, labelOnXAxisForIndex index: Int) -> String {
-        let date = NSDate()
+        let i = graphArray.count + index - self.numberOfPointsInLineGraph(graph)
+        let value: AudioValue = graphArray[i] as! AudioValue
+        
         let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        return formatter.stringFromDate(date)
+        formatter.timeStyle = .MediumStyle
+        return formatter.stringFromDate(value.date)
+    }
+    
+    func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 4
+    }
+    
+    func numberOfYAxisLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 10
     }
 
     func newDataValue(value: Float32) {
-        graphArray.addObject(CGFloat(value))
+        let newValue = AudioValue()
+        newValue.power = value
+        newValue.decibels = 20.0 * log10(value) + 150;
+        graphArray.addObject(newValue)
         graph.reloadGraph()
         graph.averageLine.yValue = CGFloat(graph.calculatePointValueAverage().floatValue)
     }
