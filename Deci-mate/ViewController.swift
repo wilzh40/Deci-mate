@@ -68,6 +68,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         } else {
             graphArray.addObject(CGFloat(value))
         }
+        
+        let newValue = AudioValue()
+        newValue.power = value
+        newValue.decibels = 20.0 * log10(value);
+        
         graph.reloadGraph()
         graph.averageLine.yValue = CGFloat(graph.calculatePointValueAverage().floatValue)
     }
