@@ -31,8 +31,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     
     var hearingPercent: Float = 1
-    var deltaTime: Double = 0.1 //rate percentage is updated
     var resetThreshold: Float = 75
+    var warningPercentThreshold: Float = 0.1
+    var warningThreshold: Float = 110 // When to display the alert
+    
+    var deltaTime: Double = 0.1 //rate percentage is updated
+ 
     var vibrateTimer: NSTimer?
     var progress:KDCircularProgress!
     var weather:String?
@@ -61,7 +65,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableReferenceXAxisLines = true
         graph.enableReferenceYAxisLines = false
         graph.averageLine.enableAverageLine = true
-        graph.averageLine.color = UIColor.redColor()
+        graph.averageLine.color = UIColor.whiteColor()
         graph.autoScaleYAxis = true
         graph.enableRightReferenceAxisFrameLine = true
         graph.enableTopReferenceAxisFrameLine = true
@@ -76,7 +80,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         meter.initAudioMeter()
         meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
         meter.delegate = self
-        var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updateProgress"), userInfo: nil, repeats: true)
         
         //setup progress view
         progress = KDCircularProgress(frame: CGRect(x: bottomPadding, y: 0, width: view.frame.size.width - bottomPadding*2, height: view.frame.size.width-bottomPadding*2))
@@ -150,6 +154,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graphArray.addObject(newValue)
         graph.reloadGraph()
         
+        
+        
         // Update graph labels
         let x = CGFloat(graph.calculatePointValueAverage().floatValue)
         graph.averageLine.yValue = x
@@ -193,7 +199,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
     }
     
-    func updatePercentage() {
+    func updateProgress() {
         if graphArray.count > 2 {
             let db = graph.calculatePointValueAverage().floatValue
             hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
@@ -201,7 +207,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             
             if db < resetThreshold {
                 // Reset it once it reaches a certain threshold
-                hearingPercent = 1
+                //hearingPercent = 1
+//                view.backgroundColorColor = 
             }
             if hearingPercent <= 0.0 {
                 self.limitReached()
@@ -213,6 +220,10 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             let alpha = CGFloat(1-hearingPercent)*0.5 + 0.5
             
             progress.setColors(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: alpha))
+            
+            // set background colors
+            //view.backgroundColor = (UIColor(red: alpha, green: 0.5, blue: 0.5, alpha: 1))
+
             
         }
         

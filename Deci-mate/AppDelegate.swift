@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        var centerController = storyBoard.instantiateViewControllerWithIdentifier("Center") as! UIViewController
+        
+        var left = UINavigationController(rootViewController:SettingsViewController())
+//        var right = UINavigationController(rootViewController:SavedSongsViewController())
+
+        
         return true
     }
 

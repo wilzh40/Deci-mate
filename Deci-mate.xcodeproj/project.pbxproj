@@ -28,6 +28,7 @@
 		774065881B51DB690080F4F7 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774065871B51DB690080F4F7 /* aubio.framework */; };
 		7740658B1B51DBED0080F4F7 /* FFTHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7740658A1B51DBED0080F4F7 /* FFTHelper.mm */; };
 		7740658D1B51FB990080F4F7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7740658C1B51FB990080F4F7 /* Model.swift */; };
+		77C4FC781B52E05E00181A27 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C4FC771B52E05E00181A27 /* SettingsViewController.swift */; };
 		B8C87AB11B52D932008478A3 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C87AB01B52D932008478A3 /* Alamofire-SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		774065891B51DBED0080F4F7 /* FFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTHelper.h; sourceTree = "<group>"; };
 		7740658A1B51DBED0080F4F7 /* FFTHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FFTHelper.mm; sourceTree = "<group>"; };
 		7740658C1B51FB990080F4F7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		77C4FC771B52E05E00181A27 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		87D3F8273D6C741CB4052C42 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C87AB01B52D932008478A3 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
 		CBB63EED0C7C6911BF49DC6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				774065411B51CF770080F4F7 /* ViewController.swift */,
+				77C4FC771B52E05E00181A27 /* SettingsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				774065851B51DA1C0080F4F7 /* mo_audio.mm in Sources */,
 				774065401B51CF770080F4F7 /* Deci_mate.xcdatamodeld in Sources */,
 				774065861B51DA1C0080F4F7 /* mo_gfx.mm in Sources */,
+				77C4FC781B52E05E00181A27 /* SettingsViewController.swift in Sources */,
 				7740658D1B51FB990080F4F7 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
