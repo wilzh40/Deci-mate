@@ -9,7 +9,7 @@
 import UIKit
 import BEMSimpleLineGraph
 
-class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate {
+class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     var graphArray:NSMutableArray = []
@@ -19,10 +19,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
+        meter.delegate = self
 
         
         for index in 1...self.numberOfPointsInLineGraph(graph) {
-            graphArray.addObject(CGFloat(random()))
+            graphArray.addObject(70.0)
         }
         
         //setup graph
@@ -30,13 +31,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableReferenceAxisFrame = true
         graph.enableReferenceXAxisLines = true
         graph.enableReferenceYAxisLines = true
-        
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
+        graph.averageLine.enableAverageLine = true
+        graph.averageLine.color = UIColor.redColor()
+        //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
-        meter.changeAccumulatorTo(131072/8)  //16384; //32768; 65536; 131072;
+        meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
         
-
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,14 +54,19 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         return graphArray.objectAtIndex(i) as! CGFloat
     }
     
-    func addValueToGraphArray() {
-        graphArray.addObject(CGFloat(random()))
-        graph.reloadGraph()
-    }
-    
     //x axis labels
     func lineGraph(graph: BEMSimpleLineGraphView, labelOnXAxisForIndex index: Int) -> String {
-        return "temp"
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        return formatter.stringFromDate(date)
     }
+
+    func newDataValue(value: Float32) {
+        graphArray.addObject(CGFloat(value))
+        graph.reloadGraph()
+        graph.averageLine.yValue = CGFloat(graph.calculatePointValueAverage().floatValue)
+    }
+
 }
 

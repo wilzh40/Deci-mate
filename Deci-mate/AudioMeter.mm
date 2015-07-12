@@ -9,6 +9,7 @@
 #import "AudioMeter.h"
 #import "mo_audio.h" //stuff that helps set up low-level audio
 #import "FFTHelper.h"
+//#import  "EAGLView.h"
 #import <aubio/aubio.h>
 #include <iostream>
 
@@ -34,6 +35,9 @@ Float32 frequencyHerzValue(long frequencyIndex, long fftVectorSize, Float32 nyqu
 
 // The Main FFT Helper
 FFTHelperRef *fftConverter = NULL;
+// Reference to self
+id thisClass;
+
 
 
 
@@ -107,11 +111,6 @@ static Float32 strongestFrequencyHZ(Float32 *buffer, FFTHelperRef *fftHelper, UI
 
 __weak UILabel *labelToUpdate = nil;
 
-
-
-
-
-@implementation AudioMeter
 #pragma mark MAIN CALLBACK
 void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
 {
@@ -162,7 +161,7 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
         
         //pow( 10,(sum / 20) );
         
-        std::cout << decibels << std::endl;
+        std::cout << decibels+150 << std::endl;
         
         // execute inverse fourier transform
         //aubio_fft_rdo(fft,fftgrain,out);
@@ -181,17 +180,28 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
         
         NSLog(@" max HZ = %0.3f ", maxHZ);
         dispatch_async(dispatch_get_main_queue(), ^{ //update UI only on main thread
-            labelToUpdate.text = [NSString stringWithFormat:@"%f",decibels + 150];
+          //  labelToUpdate.text = [NSString stringWithFormat:@"%f",decibels + 150];
+            //[thisClass changeAccumulatorTo:12312312]
+            [thisClass pushToDelegate: decibels+150];
+
         });
         
         emptyAccumulator(accumulatorDataLenght); //empty the accumulator when finished
     }
     memset(buffer, 0, sizeof(Float32)*frameSize*NUMCHANNELS);
+   
+    
 }
 
 
+
+
+@implementation AudioMeter
+
+
+
 -(void) initAudioMeter {
-    
+    thisClass = self;
     fftConverter = FFTHelperCreate(accumulatorDataLenght);
     initializeAccumulator(accumulatorDataLenght);
    
@@ -213,6 +223,14 @@ void AudioCallback( Float32 * buffer, UInt32 frameSize, void * userData )
 
     
 }
+
+-(void) pushToDelegate: (Float32)value {
+    [self.delegate newDataValue:value];
+    
+    
+}
+
+
 
 
 - (void)didReceiveMemoryWarning
