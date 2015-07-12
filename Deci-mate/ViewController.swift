@@ -22,13 +22,18 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var startTime: NSDate?
     
     var timeRange: NSTimeInterval = 3*60 ///in secs
-
-
+    
+    let topPadding: CGFloat = 200
+    let bottomPadding: CGFloat = 10
+    
+    
     var hearingPercent: Float = 1
     var deltaTime: Double = 0.1 //rate percentage is updated
     var resetThreshold: Float = 75
     var vibrateTimer: NSTimer?
     var progress:KDCircularProgress!
+    
+    var safe: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +42,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         limitReached()
         //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-
+        
         let value = AudioValue()
         value.decibels = 80.0
         graphArray.addObject(value)
@@ -59,6 +64,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableXAxisLabel = true
         graph.enableYAxisLabel = true
         graph.labelFont = UIFont(name: "Futura", size: 10)
+        
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
         
         // setup meter
@@ -67,15 +73,15 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
         meter.delegate = self
         var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
-
+        
         //setup progress view
-        progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 225, height: 225))
+        progress = KDCircularProgress(frame: CGRect(x: bottomPadding, y: 0, width: view.frame.size.width - bottomPadding*2, height: view.frame.size.width-bottomPadding*2))
         progress.startAngle = 0
         progress.progressThickness = 0.2
         progress.trackThickness = 0.7
         progress.trackColor = UIColor.orangeColor()
         progress.clockwise = true
-        progress.center = CGPointMake(view.center.x, view.frame.height - 112)
+        progress.center = CGPointMake(view.center.x, view.frame.height - 170)
         progress.gradientRotateSpeed = 2
         progress.roundedCorners = true
         progress.glowMode = .Forward
@@ -139,7 +145,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         newValue.decibels = 20.0 * log10(value) + 150;
         graphArray.addObject(newValue)
         graph.reloadGraph()
-
+        
         // Update graph labels
         let x = CGFloat(graph.calculatePointValueAverage().floatValue)
         graph.averageLine.yValue = x
@@ -147,7 +153,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             a.text = "Average: \(Int(x)) dB"
             
         }
-
+        
+        // See if it's a safe level
+        safe = (graph.calculatePointValueAverage().floatValue<resetThreshold) ? true : false
+        
+        
         if let b = labelPercent {
             let percent = CGFloat(hearingPercent*100)
             //let percent = ((CGFloat(hearingPercent*100)).description as NSString).substringToIndex(5)
@@ -156,11 +166,15 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         }
         
         if let c = labelTimeLeft {
-            let seconds = maxExposureTimeFordB(newValue.decibels)
-            let (h, m, s) = secondsToHoursMinutesSeconds(Int(seconds))
-            c.text =  ("\(h) Hours, \(m) Minutes, \(s) Seconds")
+            if !safe {
+                let seconds = maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)
+                let (h, m, s) = secondsToHoursMinutesSeconds(Int(seconds))
+                c.text =  ("\(h) Hours, \(m) Min, \(s) Sec")
+            } else {
+                c.text = "SAFE"
+            }
         }
-      
+        
         
         // Delete everything older than a certain value
         for i in graphArray {
@@ -177,7 +191,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         if graphArray.count > 2 {
             let db = graph.calculatePointValueAverage().floatValue
             hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
-            
+
             
             if db < resetThreshold {
                 // Reset it once it reaches a certain threshold
@@ -189,9 +203,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             
             // set Progress
             progress.angle = Int(hearingPercent*360)
-                
+            
             let alpha = CGFloat(1-hearingPercent)*0.5 + 0.5
-                
+            
             progress.setColors(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: alpha))
             
         }
@@ -203,7 +217,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         // NIOSH
         //return pow(2, ((94-db)/3)) * 60 * 60
         
-        // OSHA 
+        // OSHA
         return pow(2, ((105-db)/5)) * 60 * 60
         
     }
@@ -222,14 +236,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         //vibrate phone
         var timer =  NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("vibrate"), userInfo: nil, repeats: true)
         alertButton.hidden = false
-
+        
         hearingPercent = 1
     }
     
     func vibrate() {
         //AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-       // AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        // AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     @IBAction func alertButtonPressed(sender: AnyObject) {
         alertButton.hidden = true
