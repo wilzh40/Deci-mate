@@ -66,20 +66,26 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="A66-UL-TEi"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
-                                <rect key="frame" x="129" y="369" width="62.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
+                                <rect key="frame" x="129" y="369" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au3-dy-ZI5">
-                                <rect key="frame" x="130" y="390" width="59.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au3-dy-ZI5">
+                                <rect key="frame" x="130" y="390" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-fq-qrR">
-                                <rect key="frame" x="124" y="410.5" width="71.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time Left" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-fq-qrR">
+                                <rect key="frame" x="124" y="411" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gh-t3-6GM">
+                                <rect key="frame" x="16" y="278" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -94,7 +100,9 @@
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Uxl-LN-xI1"/>
                             <constraint firstAttribute="centerX" secondItem="au3-dy-ZI5" secondAttribute="centerX" id="cgu-bL-Ywh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vsx-fq-qrR" secondAttribute="bottom" constant="137" id="dxy-cO-RMi"/>
+                            <constraint firstItem="8gh-t3-6GM" firstAttribute="top" secondItem="g7a-nO-Rep" secondAttribute="bottom" constant="8" id="fnE-WD-Det"/>
                             <constraint firstAttribute="centerX" secondItem="vsx-fq-qrR" secondAttribute="centerX" id="jaY-eO-sMy"/>
+                            <constraint firstItem="8gh-t3-6GM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="n3j-xd-2eo"/>
                             <constraint firstAttribute="trailing" secondItem="g7a-nO-Rep" secondAttribute="trailing" id="xNz-Nx-gHQ"/>
                         </constraints>
                     </view>
@@ -104,6 +112,7 @@
                         <outlet property="labelAverage" destination="RAM-Hk-Qil" id="7sG-wP-zgd"/>
                         <outlet property="labelPercent" destination="au3-dy-ZI5" id="PO6-xw-PPu"/>
                         <outlet property="labelTimeLeft" destination="vsx-fq-qrR" id="3Sr-oh-9G2"/>
+                        <outlet property="labelWeather" destination="8gh-t3-6GM" id="Nvz-0Z-Dhf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

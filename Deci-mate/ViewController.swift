@@ -10,9 +10,12 @@ import UIKit
 import BEMSimpleLineGraph
 import KDCircularProgress
 import AudioToolbox
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
     
+    @IBOutlet weak var labelWeather: UILabel!
     @IBOutlet weak var labelPercent: UILabel!
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var labelTimeLeft: UILabel!
@@ -32,7 +35,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var resetThreshold: Float = 75
     var vibrateTimer: NSTimer?
     var progress:KDCircularProgress!
-    
+    var weather:String?
     var safe: Bool = true
     
     override func viewDidLoad() {
@@ -50,6 +53,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         labelAverage.font = UIFont(name: "Futura", size: 12)
         labelPercent.font = UIFont(name: "Futura", size: 20)
         labelTimeLeft.font = UIFont(name: "Futura", size: 12)
+        labelWeather.font = UIFont(name: "Futura", size: 20)
         
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
@@ -90,7 +94,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         //progress.setColors(UIColor.whiteColor() ,UIColor.orangeColor(), UIColor.redColor())
         view.addSubview(progress)
         
-        
+        loadWeather()
         
         self.view.bringSubviewToFront(labelAverage)
         self.view.bringSubviewToFront(alertButton)
@@ -250,5 +254,19 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         vibrateTimer?.invalidate()
     }
     
+    func loadWeather() {
+        let URL = "http://api.wunderground.com/api/262af78a0c11d0fb/conditions/q/CA/San_Francisco.json"
+        Alamofire.request(.GET, URL)
+            .responseSwiftyJSON ({ (request, response, responseJSON, error) in
+                println(request)
+                
+                if error != nil {
+                    println(error)
+                } else {
+                    self.weather = responseJSON["current_observation"]["feelslike_f"].string!
+                    self.labelWeather.text = self.weather! + "° F"
+                }
+            })
+    }
 }
 
