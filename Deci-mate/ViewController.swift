@@ -11,6 +11,7 @@ import BEMSimpleLineGraph
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
+    @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     var graphArray:NSMutableArray = []
     
@@ -22,14 +23,17 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         meter.delegate = self
         
         let value = AudioValue()
-        value.decibels = 60.0
+        value.decibels = 80.0
         graphArray.addObject(value)
+        
+        labelAverage.font = UIFont(name: "Futura", size: 12)
+        self.view.bringSubviewToFront(labelAverage)
         
         //setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
         graph.enableReferenceAxisFrame = true
         graph.enableReferenceXAxisLines = true
-        graph.enableReferenceYAxisLines = true
+        graph.enableReferenceYAxisLines = false
         graph.averageLine.enableAverageLine = true
         graph.averageLine.color = UIColor.redColor()
         graph.autoScaleYAxis = true
@@ -37,6 +41,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableTopReferenceAxisFrameLine = true
         graph.enableXAxisLabel = true
         graph.enableYAxisLabel = true
+        graph.labelFont = UIFont(name: "Futura", size: 10)
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
         meter.changeAccumulatorTo(131072/20)  //16384; //32768; 65536; 131072;
@@ -92,7 +97,12 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         newValue.decibels = 20.0 * log10(value) + 150;
         graphArray.addObject(newValue)
         graph.reloadGraph()
-        graph.averageLine.yValue = CGFloat(graph.calculatePointValueAverage().floatValue)
+        let x = CGFloat(graph.calculatePointValueAverage().floatValue)
+        graph.averageLine.yValue = x
+        if let l = labelAverage {
+            l.text = "Average: \(Int(x)) dB"
+
+        }
     }
 
 }
