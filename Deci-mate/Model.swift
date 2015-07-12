@@ -9,7 +9,7 @@
 import Foundation
 
 class AudioValue {
-    var date: NSDate = NSDate()
+    var time: NSDate = NSDate()
     var power: Float32 = 0.0
     var decibels: Float32 = 0.0
     

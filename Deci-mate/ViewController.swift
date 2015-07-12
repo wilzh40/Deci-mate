@@ -13,14 +13,20 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
 
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
-    var graphArray:NSMutableArray = []
+    var graphArray: NSMutableArray = []
+    var startTime: NSDate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startTime = NSDate()
+        
+        // setup meter
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
         meter.delegate = self
+        meter.changeAccumulatorTo(131072/16)  //16384; //32768; 65536; 131072;
         
         let value = AudioValue()
         value.decibels = 80.0
@@ -44,7 +50,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.labelFont = UIFont(name: "Futura", size: 10)
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
-        meter.changeAccumulatorTo(131072/20)  //16384; //32768; 65536; 131072;
+        
+        
+
         
     }
 
@@ -80,7 +88,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         let formatter = NSDateFormatter()
         formatter.timeStyle = .MediumStyle
-        return formatter.stringFromDate(value.date)
+        return formatter.stringFromDate(value.time)
     }
     
     func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
