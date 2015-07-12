@@ -8,9 +8,11 @@
 
 import UIKit
 import BEMSimpleLineGraph
+import AudioToolbox
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
+    @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var labelTimeLeft: UILabel!
     @IBOutlet weak var labelAverage: UILabel!
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
@@ -131,6 +133,16 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     func maxExposureTimeFordB(db: Float32) -> Float32 {
         return pow(2, ((94-db)/3))
     }
-
+    
+    func limitReached() {
+        //vibrate phone
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        alertButton.hidden = false
+    }
+    
+    @IBAction func alertButtonPressed(sender: AnyObject) {
+        alertButton.hidden = true
+    }
+    
 }
 
