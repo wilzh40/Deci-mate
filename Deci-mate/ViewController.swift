@@ -33,8 +33,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         super.viewDidLoad()
         
         startTime = NSDate()
-
         
+        limitReached()
         //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 
         let value = AudioValue()
@@ -94,7 +94,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     }
     
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        let num = 45
+        let num = 30
         if (graphArray.count < num) {
             return graphArray.count
         } else {
@@ -198,13 +198,16 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     func limitReached() {
         //vibrate phone
-        vibrateTimer = NSTimer(timeInterval: 1, target: self, selector: "vibrate", userInfo: nil, repeats: true)
+        var timer =  NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("vibrate"), userInfo: nil, repeats: true)
         alertButton.hidden = false
+
         hearingPercent = 1
     }
     
-    func vibrate () {
+    func vibrate() {
+        //AudioServicesPlayAlertSound(UInt32(kSystemSoundID_Vibrate))
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+       // AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     @IBAction func alertButtonPressed(sender: AnyObject) {
         alertButton.hidden = true
