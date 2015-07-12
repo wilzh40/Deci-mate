@@ -51,14 +51,20 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="A66-UL-TEi"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
-                                <rect key="frame" x="129" y="426" width="63" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
+                                <rect key="frame" x="129" y="425" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au3-dy-ZI5">
+                                <rect key="frame" x="130" y="446" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-fq-qrR">
-                                <rect key="frame" x="124" y="447" width="72" height="21"/>
+                                <rect key="frame" x="124" y="467" width="72" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -81,11 +87,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="nVZ-vA-pJn" secondAttribute="trailing" id="AiV-E3-jLS"/>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="BUD-e4-4dD"/>
-                            <constraint firstItem="vsx-fq-qrR" firstAttribute="top" secondItem="RAM-Hk-Qil" secondAttribute="bottom" id="SF2-x7-1OW"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vsx-fq-qrR" secondAttribute="bottom" constant="100" id="Ttl-oZ-OL6"/>
+                            <constraint firstItem="vsx-fq-qrR" firstAttribute="top" secondItem="au3-dy-ZI5" secondAttribute="bottom" id="Dq6-0X-F9i"/>
+                            <constraint firstItem="au3-dy-ZI5" firstAttribute="top" secondItem="RAM-Hk-Qil" secondAttribute="bottom" id="IFj-kn-2Df"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vsx-fq-qrR" secondAttribute="bottom" constant="80" id="Ttl-oZ-OL6"/>
                             <constraint firstAttribute="centerX" secondItem="RAM-Hk-Qil" secondAttribute="centerX" id="Txj-2X-814"/>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Uxl-LN-xI1"/>
                             <constraint firstItem="nVZ-vA-pJn" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="XC4-uf-Pil"/>
+                            <constraint firstAttribute="centerX" secondItem="au3-dy-ZI5" secondAttribute="centerX" id="cgu-bL-Ywh"/>
                             <constraint firstAttribute="centerX" secondItem="vsx-fq-qrR" secondAttribute="centerX" id="jaY-eO-sMy"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nVZ-vA-pJn" secondAttribute="bottom" id="oHF-3z-GyO"/>
                             <constraint firstItem="nVZ-vA-pJn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="opC-FP-TIq"/>
@@ -96,6 +104,7 @@
                         <outlet property="alertButton" destination="nVZ-vA-pJn" id="48N-fx-six"/>
                         <outlet property="graph" destination="g7a-nO-Rep" id="lGa-Nv-eOX"/>
                         <outlet property="labelAverage" destination="RAM-Hk-Qil" id="7sG-wP-zgd"/>
+                        <outlet property="labelPercent" destination="au3-dy-ZI5" id="PO6-xw-PPu"/>
                         <outlet property="labelTimeLeft" destination="vsx-fq-qrR" id="3Sr-oh-9G2"/>
                     </connections>
                 </viewController>
