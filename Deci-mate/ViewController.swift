@@ -139,12 +139,28 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         newValue.decibels = 20.0 * log10(value) + 150;
         graphArray.addObject(newValue)
         graph.reloadGraph()
+
+        // Update graph labels
         let x = CGFloat(graph.calculatePointValueAverage().floatValue)
         graph.averageLine.yValue = x
-        if let l = labelAverage {
-            l.text = "Average: \(Int(x)) dB"
+        if let a = labelAverage {
+            a.text = "Average: \(Int(x)) dB"
             
         }
+
+        if let b = labelPercent {
+            let percent = CGFloat(hearingPercent*100)
+            //let percent = ((CGFloat(hearingPercent*100)).description as NSString).substringToIndex(5)
+            b.text = (String(format: "%.5f", percent)) + "%"
+            //CGFloat(maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)).description
+        }
+        
+        if let c = labelTimeLeft {
+            let seconds = maxExposureTimeFordB(newValue.decibels)
+            let (h, m, s) = secondsToHoursMinutesSeconds(Int(seconds))
+            c.text =  ("\(h) Hours, \(m) Minutes, \(s) Seconds")
+        }
+      
         
         // Delete everything older than a certain value
         for i in graphArray {
@@ -154,13 +170,6 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
             }
         }
         
-        
-        if let b = labelPercent {
-            let percent = CGFloat(hearingPercent*100)
-            //let percent = ((CGFloat(hearingPercent*100)).description as NSString).substringToIndex(5)
-            b.text = (String(format: "%.5f", percent)) + "%"
-            //CGFloat(maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)).description
-        }
         
     }
     
