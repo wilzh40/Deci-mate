@@ -286,5 +286,13 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
                 }
             })
     }
+    
+    func maxValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 150
+    }
+    
+    func minValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 60
+    }
 }
 
