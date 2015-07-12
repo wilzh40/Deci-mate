@@ -12,20 +12,26 @@ import BEMSimpleLineGraph
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
 
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
-    var graphArray:NSMutableArray = []
+    var graphArray: NSMutableArray = []
+    var startTime: NSDate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startTime = NSDate()
+        
+        // setup meter
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
         meter.delegate = self
+        meter.changeAccumulatorTo(131072)  //16384; //32768; 65536; 131072;
         
         let value = AudioValue()
         value.decibels = 60.0
         graphArray.addObject(value)
         
-        //setup graph
+        // setup graph
         graph.animationGraphStyle = BEMLineAnimation.None
         graph.enableReferenceAxisFrame = true
         graph.enableReferenceXAxisLines = true
@@ -39,7 +45,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graph.enableYAxisLabel = true
         //var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
 
-        meter.changeAccumulatorTo(131072/20)  //16384; //32768; 65536; 131072;
+        
+        
+
         
     }
 
@@ -75,7 +83,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         let formatter = NSDateFormatter()
         formatter.timeStyle = .MediumStyle
-        return formatter.stringFromDate(value.date)
+        return formatter.stringFromDate(value.time)
     }
     
     func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
@@ -93,6 +101,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         graphArray.addObject(newValue)
         graph.reloadGraph()
         graph.averageLine.yValue = CGFloat(graph.calculatePointValueAverage().floatValue)
+        
+        
+        
+        // Check the avg from the last 10 seconds
+
     }
 
 }
