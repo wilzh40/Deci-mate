@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -30,8 +29,26 @@
                                     <constraint firstAttribute="width" constant="50" id="igH-ug-sHb"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7a-nO-Rep" customClass="BEMSimpleLineGraphView">
-                                <rect key="frame" x="0.0" y="20" width="320" height="250"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
+                                <rect key="frame" x="129" y="369" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au3-dy-ZI5">
+                                <rect key="frame" x="130" y="390" width="60" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-fq-qrR">
+                                <rect key="frame" x="124" y="411" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7a-nO-Rep" customClass="BEMSimpleLineGraphView">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nVZ-vA-pJn">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
@@ -49,9 +66,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="g7a-nO-Rep" secondAttribute="height" multiplier="32:25" id="Ojp-5r-T6Y"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="enableYAxisLabel" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="enableXAxisLabel" value="YES"/>
@@ -79,40 +93,23 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="A66-UL-TEi"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAM-Hk-Qil">
-                                <rect key="frame" x="129" y="369" width="63" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="au3-dy-ZI5">
-                                <rect key="frame" x="130" y="390" width="60" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsx-fq-qrR">
-                                <rect key="frame" x="124" y="411" width="72" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="g7a-nO-Rep" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="BUD-e4-4dD"/>
+                            <constraint firstItem="g7a-nO-Rep" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="6HF-E2-jhu"/>
                             <constraint firstItem="vsx-fq-qrR" firstAttribute="top" secondItem="au3-dy-ZI5" secondAttribute="bottom" id="Dq6-0X-F9i"/>
                             <constraint firstItem="JXv-GH-RIp" firstAttribute="leading" secondItem="8gh-t3-6GM" secondAttribute="trailing" id="EUJ-RM-o52"/>
                             <constraint firstItem="au3-dy-ZI5" firstAttribute="top" secondItem="RAM-Hk-Qil" secondAttribute="bottom" id="IFj-kn-2Df"/>
                             <constraint firstAttribute="centerX" secondItem="RAM-Hk-Qil" secondAttribute="centerX" id="Txj-2X-814"/>
                             <constraint firstItem="JXv-GH-RIp" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UPX-yb-3LH"/>
-                            <constraint firstItem="g7a-nO-Rep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Uxl-LN-xI1"/>
+                            <constraint firstItem="g7a-nO-Rep" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="UmO-T1-2dZ"/>
                             <constraint firstAttribute="trailing" secondItem="JXv-GH-RIp" secondAttribute="trailing" constant="8" id="Xvp-Ke-JPs"/>
                             <constraint firstAttribute="centerX" secondItem="au3-dy-ZI5" secondAttribute="centerX" id="cgu-bL-Ywh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vsx-fq-qrR" secondAttribute="bottom" constant="137" id="dxy-cO-RMi"/>
+                            <constraint firstItem="g7a-nO-Rep" firstAttribute="centerX" secondItem="RAM-Hk-Qil" secondAttribute="centerX" id="hmv-RN-xRB"/>
+                            <constraint firstItem="g7a-nO-Rep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hvu-Cf-Url"/>
                             <constraint firstAttribute="centerX" secondItem="vsx-fq-qrR" secondAttribute="centerX" id="jaY-eO-sMy"/>
                             <constraint firstItem="8gh-t3-6GM" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="kRi-U3-S4Z"/>
-                            <constraint firstAttribute="trailing" secondItem="g7a-nO-Rep" secondAttribute="trailing" id="xNz-Nx-gHQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eaV-Mz-X2H"/>

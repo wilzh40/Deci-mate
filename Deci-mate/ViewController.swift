@@ -87,8 +87,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         //setup progress view
         progress = KDCircularProgress(frame: CGRect(x: bottomPadding, y: 0, width: view.frame.size.width - bottomPadding*2, height: view.frame.size.width-bottomPadding*2))
         progress.startAngle = 0
-        progress.progressThickness = 0.2
-        progress.trackThickness = 0.7
+        progress.progressThickness = 0.9
+        
+        progress.trackThickness = 0.3
         progress.trackColor = UIColor.orangeColor()
         progress.clockwise = true
         progress.center = CGPointMake(view.center.x, view.frame.height - 170)
@@ -96,8 +97,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         progress.roundedCorners = true
         progress.glowMode = .Forward
         progress.angle = 0
-        progress.setColors(UIColor.redColor())
-        //progress.setColors(UIColor.whiteColor() ,UIColor.orangeColor(), UIColor.redColor())
+        //progress.setColors(UIColor.whiteColor())
+        progress.setColors(UIColor.whiteColor() ,UIColor.orangeColor(), UIColor.redColor())
         view.addSubview(progress)
         
         self.view.bringSubviewToFront(labelWeather)
@@ -205,13 +206,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     func updateProgress() {
         if graphArray.count > 2 {
             let db = graph.calculatePointValueAverage().floatValue
-            hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
 
             
             if db < resetThreshold {
                 // Reset it once it reaches a certain threshold
                 //hearingPercent = 1
 //                view.backgroundColorColor = 
+            } else {
+                hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
             }
             if hearingPercent <= 0.0 {
                 self.limitReached()
@@ -292,6 +294,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     }
     
     func minValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 60
+    }
+    
+    func incrementValueForYAxisOnLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 10
+    }
+    
+    func baseValueForYAxisOnLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
         return 60
     }
 }

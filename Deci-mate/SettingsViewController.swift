@@ -51,6 +51,8 @@ class SettingsViewController:  XLFormViewController, XLFormDescriptorDelegate {
         section.addFormRow(row)
         
         self.form = form
+        
+        
 
 
     }
