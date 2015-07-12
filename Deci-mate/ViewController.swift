@@ -122,6 +122,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         }
         
     }
+    
+    func maxExposureTimeFordB(db: Float32) -> Float32 {
+        return 480 / pow(2, (94-db)/3)
+        
+    }
 
 }
 
