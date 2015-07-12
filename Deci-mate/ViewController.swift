@@ -16,7 +16,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
     var graphArray: NSMutableArray = []
     var startTime: NSDate?
-    var timeRange: NSTimeInterval = 3
+    var timeRange: NSTimeInterval = 3*60 ///in secs
     
     
     override func viewDidLoad() {
@@ -122,12 +122,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
                 graphArray.removeObject(i)
             }
         }
+        if let b = labelTimeLeft {
+            b.text = CGFloat(maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)).description
+        }
         
     }
     
     func maxExposureTimeFordB(db: Float32) -> Float32 {
-        return 480 / pow(2, (94-db)/3)
-        
+        return pow(2, ((94-db)/3))
     }
 
 }
