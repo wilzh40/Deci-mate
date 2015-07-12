@@ -17,6 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gh-t3-6GM">
+                                <rect key="frame" x="198" y="36" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JXv-GH-RIp">
+                                <rect key="frame" x="262" y="20" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="N5q-Rf-x45"/>
+                                    <constraint firstAttribute="width" constant="50" id="igH-ug-sHb"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7a-nO-Rep" customClass="BEMSimpleLineGraphView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="250"/>
                                 <subviews>
@@ -84,25 +97,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gh-t3-6GM">
-                                <rect key="frame" x="16" y="278" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="BUD-e4-4dD"/>
                             <constraint firstItem="vsx-fq-qrR" firstAttribute="top" secondItem="au3-dy-ZI5" secondAttribute="bottom" id="Dq6-0X-F9i"/>
+                            <constraint firstItem="JXv-GH-RIp" firstAttribute="leading" secondItem="8gh-t3-6GM" secondAttribute="trailing" id="EUJ-RM-o52"/>
                             <constraint firstItem="au3-dy-ZI5" firstAttribute="top" secondItem="RAM-Hk-Qil" secondAttribute="bottom" id="IFj-kn-2Df"/>
                             <constraint firstAttribute="centerX" secondItem="RAM-Hk-Qil" secondAttribute="centerX" id="Txj-2X-814"/>
+                            <constraint firstItem="JXv-GH-RIp" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UPX-yb-3LH"/>
                             <constraint firstItem="g7a-nO-Rep" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Uxl-LN-xI1"/>
+                            <constraint firstAttribute="trailing" secondItem="JXv-GH-RIp" secondAttribute="trailing" constant="8" id="Xvp-Ke-JPs"/>
                             <constraint firstAttribute="centerX" secondItem="au3-dy-ZI5" secondAttribute="centerX" id="cgu-bL-Ywh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vsx-fq-qrR" secondAttribute="bottom" constant="137" id="dxy-cO-RMi"/>
-                            <constraint firstItem="8gh-t3-6GM" firstAttribute="top" secondItem="g7a-nO-Rep" secondAttribute="bottom" constant="8" id="fnE-WD-Det"/>
                             <constraint firstAttribute="centerX" secondItem="vsx-fq-qrR" secondAttribute="centerX" id="jaY-eO-sMy"/>
-                            <constraint firstItem="8gh-t3-6GM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="n3j-xd-2eo"/>
+                            <constraint firstItem="8gh-t3-6GM" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="kRi-U3-S4Z"/>
                             <constraint firstAttribute="trailing" secondItem="g7a-nO-Rep" secondAttribute="trailing" id="xNz-Nx-gHQ"/>
                         </constraints>
                     </view>
@@ -113,6 +122,7 @@
                         <outlet property="labelPercent" destination="au3-dy-ZI5" id="PO6-xw-PPu"/>
                         <outlet property="labelTimeLeft" destination="vsx-fq-qrR" id="3Sr-oh-9G2"/>
                         <outlet property="labelWeather" destination="8gh-t3-6GM" id="Nvz-0Z-Dhf"/>
+                        <outlet property="weatherIcon" destination="JXv-GH-RIp" id="sdt-rH-ZTx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

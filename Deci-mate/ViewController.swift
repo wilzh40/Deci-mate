@@ -15,6 +15,7 @@ import SwiftyJSON
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate, AudioMeterDelegate {
     
+    @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var labelWeather: UILabel!
     @IBOutlet weak var labelPercent: UILabel!
     @IBOutlet weak var alertButton: UIButton!
@@ -37,6 +38,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var progress:KDCircularProgress!
     var weather:String?
     var safe: Bool = true
+    var weatherIconUrl:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,10 +96,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         //progress.setColors(UIColor.whiteColor() ,UIColor.orangeColor(), UIColor.redColor())
         view.addSubview(progress)
         
-        loadWeather()
-        
+        self.view.bringSubviewToFront(labelWeather)
+        self.view.bringSubviewToFront(weatherIcon)
         self.view.bringSubviewToFront(labelAverage)
         self.view.bringSubviewToFront(alertButton)
+        loadWeather()
     }
     
     override func didReceiveMemoryWarning() {
@@ -264,7 +267,9 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
                     println(error)
                 } else {
                     self.weather = responseJSON["current_observation"]["feelslike_f"].string!
+                    self.weatherIconUrl = responseJSON["current_observation"]["icon_url"].string!
                     self.labelWeather.text = self.weather! + "° F"
+                    self.weatherIcon.image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.weatherIconUrl!)!)!)
                 }
             })
     }
