@@ -25,15 +25,13 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var hearingPercent: Float = 1
     var deltaTime: Double = 0.1 //rate percentage is updated
     var resetThreshold: Float = 75
-    
+    var vibrateTimer:NSTimer?
     var progress:KDCircularProgress!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startTime = NSDate()
-        
- 
         
         let value = AudioValue()
         value.decibels = 80.0
@@ -63,8 +61,6 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
         meter.delegate = self
         var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
-
-
 
         //setup progress view
         progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 225, height: 225))
@@ -184,13 +180,17 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     func limitReached() {
         //vibrate phone
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        vibrateTimer = NSTimer(timeInterval: 1, target: self, selector: "vibrate", userInfo: nil, repeats: true)
         alertButton.hidden = false
         hearingPercent = 1
     }
     
+    func vibrate () {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
     @IBAction func alertButtonPressed(sender: AnyObject) {
         alertButton.hidden = true
+        vibrateTimer?.invalidate()
     }
     
 }
