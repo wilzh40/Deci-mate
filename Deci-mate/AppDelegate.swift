@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,13 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
         var storyBoard = UIStoryboard(name: "Main", bundle: nil)
         var centerController = storyBoard.instantiateViewControllerWithIdentifier("Center") as! UIViewController
         
         var left = UINavigationController(rootViewController:SettingsViewController())
 //        var right = UINavigationController(rootViewController:SavedSongsViewController())
-
+        var drawerCon = DrawerController(centerViewController: centerController, leftDrawerViewController: left)
+        drawerCon.openDrawerGestureModeMask = OpenDrawerGestureMode.BezelPanningCenterView
+        drawerCon.closeDrawerGestureModeMask = CloseDrawerGestureMode.PanningCenterView
+        self.window?.rootViewController = drawerCon
+        self.window?.makeKeyAndVisible()
         
         return true
     }
