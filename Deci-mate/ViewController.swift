@@ -21,21 +21,22 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     var startTime: NSDate?
     
     var timeRange: NSTimeInterval = 3*60 ///in secs
-    
-    var hearingPercent: Float = 0.2
-    var deltaTime: Double = 0.2 //rate percentage is updated
-    var resetThreshold: Float = 65 //db to restore percent to 1
-    
+
+
+    var hearingPercent: Float = 1
+    var deltaTime: Double = 0.1 //rate percentage is updated
+    var resetThreshold: Float = 75
+
     var progress:KDCircularProgress!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startTime = NSDate()
-        
+
         
         //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        
+
         let value = AudioValue()
         value.decibels = 80.0
         graphArray.addObject(value)
@@ -64,9 +65,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         meter.changeAccumulatorTo(131072/32)  //16384; //32768; 65536; 131072;
         meter.delegate = self
         var timer = NSTimer.scheduledTimerWithTimeInterval(deltaTime, target: self, selector: Selector("updatePercentage"), userInfo: nil, repeats: true)
-        
-        
-        
+
         //setup progress view
         progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 225, height: 225))
         progress.startAngle = 0
@@ -199,13 +198,17 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     func limitReached() {
         //vibrate phone
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        vibrateTimer = NSTimer(timeInterval: 1, target: self, selector: "vibrate", userInfo: nil, repeats: true)
         alertButton.hidden = false
         hearingPercent = 1
     }
     
+    func vibrate () {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
     @IBAction func alertButtonPressed(sender: AnyObject) {
         alertButton.hidden = true
+        vibrateTimer?.invalidate()
     }
     
 }
