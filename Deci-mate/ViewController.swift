@@ -12,12 +12,25 @@ import BEMSimpleLineGraph
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate {
 
     @IBOutlet weak var graph: BEMSimpleLineGraphView!
+    var graphArray:NSMutableArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let meter: AudioMeter = AudioMeter()
         meter.initAudioMeter()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        for index in 1...self.numberOfPointsInLineGraph(graph) {
+            graphArray.addObject(CGFloat(random()))
+        }
+        
+        //setup graph
+        graph.animationGraphStyle = BEMLineAnimation.None
+        graph.enableReferenceAxisFrame = true
+        graph.enableReferenceXAxisLines = true
+        graph.enableReferenceYAxisLines = true
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addValueToGraphArray", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,11 +39,23 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     }
     
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return 5
+        return 100
     }
     
+    //y values
     func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
-        return 5
+        let i = graphArray.count + index - self.numberOfPointsInLineGraph(graph)
+        return graphArray.objectAtIndex(i) as! CGFloat
+    }
+    
+    func addValueToGraphArray() {
+        graphArray.addObject(CGFloat(random()))
+        graph.reloadGraph()
+    }
+    
+    //x axis labels
+    func lineGraph(graph: BEMSimpleLineGraphView, labelOnXAxisForIndex index: Int) -> String {
+        return "temp"
     }
 }
 

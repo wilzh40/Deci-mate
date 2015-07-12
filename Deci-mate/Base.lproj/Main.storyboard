@@ -23,6 +23,16 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="g7a-nO-Rep" secondAttribute="height" multiplier="1:1" id="rhk-5L-riG"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enableYAxisLabel" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enableXAxisLabel" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="widthLine">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sizePoint">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="zk6-hJ-zda"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="A66-UL-TEi"/>
