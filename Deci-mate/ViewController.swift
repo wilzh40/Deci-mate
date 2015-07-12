@@ -21,6 +21,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
 
     var hearingPercent: Float = 1.0
     var deltaTime: Double = 0.1 //rate percentage is updated
+    var resetThreshold: Float = 75
     
     
     override func viewDidLoad() {
@@ -139,9 +140,14 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
     
     func updatePercentage() {
         if graphArray.count > 20 {
-         let db = graph.calculatePointValueAverage().floatValue
-
-        hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
+            let db = graph.calculatePointValueAverage().floatValue
+            hearingPercent -= (percentageLossPerSecond(db) * Float(deltaTime))
+            
+            if db < resetThreshold {
+                // Reset it once it reaches a certain threshold
+                hearingPercent = 1
+            }
+            
         }
 
     }

@@ -3,4 +3,4 @@ use_frameworks!
 pod 'SwiftGraph'
 pod 'BEMSimpleLineGraph'
 pod 'EZAudio'
-
+pod 'KDCircularProgress'
