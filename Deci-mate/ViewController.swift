@@ -174,9 +174,11 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         if let c = labelTimeLeft {
             if !safe {
-                let seconds = maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue)
+                let seconds = maxExposureTimeFordB(graph.calculatePointValueAverage().floatValue * hearingPercent) //TIME LEFT FACTORS IN PERCENTAGE
                 let (h, m, s) = secondsToHoursMinutesSeconds(Int(seconds))
-                c.text =  ("\(h) Hours, \(m) Min, \(s) Sec")
+                c.text =  ("\(h) Hours, \(m) Min, \(s) Sec \n until hearing damage")
+                
+                
             } else {
                 c.text = "SAFE"
             }
