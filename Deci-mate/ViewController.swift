@@ -49,8 +49,8 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
         
         startTime = NSDate()
         
-        //limitReached()
-        //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        // limitReached()
+        // AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         let value = AudioValue()
         value.decibels = 80.0
